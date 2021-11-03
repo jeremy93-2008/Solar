@@ -1,7 +1,10 @@
-import { Redirect, Route } from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import {IonReactRouter} from '@ionic/react-router';
+import { Provider } from "react-redux"
+
+import { Home } from './pages/Home';
+import { Solar } from './pages/SolarSystem';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,19 +24,23 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import {store} from "./store";
 
-const App: React.FC = () => (
+const App = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
+    <Provider store={store}>
+      <IonReactRouter>
+        <IonRouterOutlet>
+            <Switch>
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/solar" component={Solar} />
+                <Route exact path="/">
+                    <Redirect to="/home" />
+                </Route>
+            </Switch>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </Provider>
   </IonApp>
 );
 

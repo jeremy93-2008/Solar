@@ -1,0 +1,9 @@
+.content {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(#3a505e, #283842);
+    width:100vw;
+    height: 100vh;
+}
