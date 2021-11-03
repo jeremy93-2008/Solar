@@ -1,0 +1,7 @@
+{
+  "name": "Solar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
