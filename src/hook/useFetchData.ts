@@ -3,9 +3,10 @@ import {db} from "../firebase";
 import {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {usePersistentCache} from "./usePersistentCache";
+import {IPlanets} from "../store";
 
 export const useFetchData = (callback: (d: any[]) => void) => {
-    const data = useSelector(d => d) as any[]
+    const data = useSelector(d => d) as IPlanets[]
     const { hasNewData, getData, setData } = usePersistentCache(data)
 
     const fetchSolarSystem = useCallback(async () => {
@@ -19,9 +20,9 @@ export const useFetchData = (callback: (d: any[]) => void) => {
         if(getData().length > 0) {
             return callback(getData())
         }
-/*        fetchSolarSystem().then((data) => {
+        fetchSolarSystem().then((data) => {
             setData(data)
             callback(data)
-        });*/
+        });
     }, [getData, setData, hasNewData, fetchSolarSystem, callback])
 }

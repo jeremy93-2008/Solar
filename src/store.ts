@@ -1,9 +1,17 @@
 import { createStore } from 'redux'
 
-function reducer(state: any[] = [], action: { type: "changeSolarData", payload: any }) {
+export interface IPlanets {
+    idx: number
+    title: string
+    description: string
+    image: string
+    size: number
+}
+
+function reducer(state: any[] = [], action: { type: "changeSolarData", payload: IPlanets[] }) {
     switch (action.type) {
         case 'changeSolarData':
-            return [ ...state, ...action.payload ]
+            return [ ...action.payload ]
         default:
             return state
     }
